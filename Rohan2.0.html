@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.ico">
+<img src="logo.png" alt="logo" width="190" height="160" style="position:absolute;top: 16px;left: 1px;"/>
+    <link rel="stylesheet" href="styles.css">
+    <title>signin-signup</title>
+    </head>
+     <body background="bgimage.jpg">
+  
+<body>
+    <div class="container">
+        <div class="signin-signup">
+            <form class="sign-in-form">
+                <h1 class="title">Sign in</h1>
+                <div class="username-input">
+                    <i class="fas fa-user"></i>
+                    <input type="email" placeholder="Username" id="username">
+                </div>
+                <div class="password-input">
+                    <i class="fas fa-lock"></i>  
+                    <input type="password" placeholder="Password" id="password">
+                </div>
+                <button type="button" class="login-btn" onclick="func()">
+                    <h3>LOGIN</h3>
+                </button>
+                  <p style="color:white;">Sign in with social platform</p>
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+
+                </div>
+             <p class="account-text">Don't have an account? <a href="#" id="sign-up-btn2">Sign up</a></p>
+            </form>
+            <form action="" class="sign-up-form">
+                <h2 class="title">Sign up</h2>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username">
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="text" placeholder="Email">
+                </div>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Password">
+                </div>
+                <input type="submit" value="Sign up" class="btn">
+                <p style="color:white;">Sign in with social platform</p>
+                <div class="social-media">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="" class="social-icon">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+                <p class="account-text">Already have an account? 
+                <a href="#" id="sign-in-btn2">Sign in</a></p>
+            </form>
+        </div>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Member of Brand?</h3>
+                    <p>Bringing Class To Cuisine</p>
+                    <button class="btn" id="sign-in-btn">Sign in</button>
+                </div>
+                <img src="signin.svg" alt="" class="image">
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>New to Brand?</h3>
+                    <p>Shake the bottle.Wake the Rohan's kitchen</p>
+                    <button class="btn" id="sign-up-btn">Sign up</button>
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      </div>
+                <img src="signup.svg" alt="" class="image">
+            </div>
+<script src="app.js"></script>
+    <script>
+        function func() {
+            var email = document.getElementById("username").value;
+            var pass = document.getElementById("password").value;
+            if ((email === 'tamboliayaz1@gmail.com' && pass === 'Ayaz0001') ||
+                (email === 'desairohan76@gmail.com' && pass === 'Rohan@1998') ||
+                (email === 'Rahilkhan3@gmail.com' && pass === 'Rahil0003')) {
+                alert("Welcome To Rohan's Kitchen");
+                window.location.assign("1index.html");
+            } else {
+                alert("Wrong password or username");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Cart</title>
+    <style>
+table, th, td {
+            border:3px solid black;
+        }
+
+</style>
+<title>Cart</title>
+    <link rel="stylesheet" type="text/css" href="cartCssFile.css">
+</head>
+<body background="bgimage.jpg">
+    <h1>Cart</h1>
+    <table id="cartTable">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Quantity</th>
+                <th>Price (Rs.)</th>
+                <th>Subtotal (Rs.)</th>
+                <th>Update</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Pizza-Margherita</td>
+                <td><span class="quantity">1</span></td>
+                <td>600.00</td>
+                <td class="subtotal">600.00</td>
+                <td><button class="updateBtn" onclick="updateQuantity(this, -1)">-</button><button class="updateBtn" onclick="updateQuantity(this, 1)">+</button></td>
+                <td><button class="deleteBtn" onclick="removeItem(this)">Remove</button></td>
+            </tr>
+            <tr>
+                <td>Sandwich-Chezzy Sandwich</td>
+                <td><span class="quantity">1</span></td>
+                <td>335.00</td>
+                <td class="subtotal">335.00</td>
+                <td><button class="updateBtn" onclick="updateQuantity(this, -1)">-</button><button class="updateBtn" onclick="updateQuantity(this, 1)">+</button></td>
+                <td><button class="deleteBtn" onclick="removeItem(this)">Remove</button></td>
+            </tr>
+            <tr>
+                <td>Chicken Burger with Coke</td>
+                <td><span class="quantity">1</span></td>
+                <td>500.00</td>
+                <td class="subtotal">500.00</td>
+                <td><button class="updateBtn" onclick="updateQuantity(this, -1)">-</button><button class="updateBtn" onclick="updateQuantity(this, 1)">+</button></td>
+                <td><button class="deleteBtn" onclick="removeItem(this)">Remove</button></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+                <td id="totalAmount" colspan="2">Total (Rs.): 1435.00</td>
+                <td><button id="checkoutBtn"><a href="upi.html" >Proceed to payment </a></button></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <script>
+        function updateQuantity(button, delta) {
+            var row = button.parentNode.parentNode;
+            var quantityElement = row.querySelector('.quantity');
+            var subtotalElement = row.querySelector('.subtotal');
+            var quantity = parseInt(quantityElement.textContent);
+            quantity += delta;
+            if (quantity < 0) return; // Prevent negative quantity
+            quantityElement.textContent = quantity;
+            var price = parseFloat(row.cells[2].textContent);
+            var subtotal = price * quantity;
+            subtotalElement.textContent = subtotal.toFixed(2);
+            updateTotal();
+        }
+
+        function removeItem(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+            updateTotal();
+        }
+
+        function updateTotal() {
+            var total = 0;
+            var subtotalElements = document.querySelectorAll('.subtotal');
+            subtotalElements.forEach(function(element) {
+                total += parseFloat(element.textContent);
+            });
+            document.getElementById('totalAmount').textContent = 'Total (Rs.): ' + total.toFixed(2);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Page</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-image: url('bgimage.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #333;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    label {
+      font-weight: bold;
+      color: #333;
+    }
+    .form-control {
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    button[type="submit"] {
+      border-radius: 4px;
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .payment-method-label {
+      margin-bottom: 5px;
+      color: #333;
+    }
+    .payment-method-select {
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .payment-method-icon {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Make Payment</h1>
+    <form id="paymentForm">
+      <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="text" class="form-control" id="amount" placeholder="Enter amount" required>
+      </div>
+      <div class="form-group">
+        <label class="payment-method-label" for="paymentMethod">Payment Method:</label>
+        <select class="payment-method-select" id="paymentMethod" required>
+          <option value="">Select Payment Method</option>
+          <option value="UPI"><i class="fas fa-mobile-alt payment-method-icon"></i>UPI</option>
+          <option value="CreditCard"><i class="far fa-credit-card payment-method-icon"></i>Credit Card</option>
+          <option value="DebitCard"><i class="far fa-credit-card payment-method-icon"></i>Debit Card</option>
+          <option value="NetBanking"><i class="fas fa-university payment-method-icon"></i>Net Banking</option>
+        </select>
+      </div>
+      <div id="paymentDetails"></div>
+      <button type="submit">Pay Now</button>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    // Function to show payment details based on selected payment method
+    function showPaymentDetails(paymentMethod) {
+      let paymentDetailsHtml = '';
+      switch (paymentMethod) {
+        case 'UPI':
+          paymentDetailsHtml = `<div class="form-group">
+                                  <label for="upiId">UPI ID:</label>
+                                  <input type="text" class="form-control" id="upiId" placeholder="Enter UPI ID" required>
+                                </div>`;
+          break;
+        case 'CreditCard':
+          paymentDetailsHtml = `<div class="form-group">
+                                  <label for="cardNumber">Card Number:</label>
+                                  <input type="text" class="form-control" id="cardNumber" placeholder="Enter card number" required>
+                                </div>
+                                <div class="form-group">
+                                  <label for="cardCompany">Card Company:</label>
+                                  <select class="form-control" id="cardCompany" required>
+                                    <option value="">Select Card Company</option>
+                                    <option value="Visa">Visa</option>
+                                    <option value="MasterCard">MasterCard</option>
+                                    <option value="AmericanExpress">American Express</option>
+                                  </select>
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="expiryDate">Expiry Date:</label>
+                                    <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="cvv">CVV:</label>
+                                    <input type="text" class="form-control" id="cvv" placeholder="Enter CVV" required>
+                                  </div>
+                                </div>`;
+          break;
+        case 'DebitCard':
+          paymentDetailsHtml = `<div class="form-group">
+                                  <label for="cardNumber">Card Number:</label>
+                                  <input type="text" class="form-control" id="cardNumber" placeholder="Enter card number" required>
+                                </div>
+                                <div class="form-group">
+                                  <label for="cardCompany">Card Company:</label>
+                                  <select class="form-control" id="cardCompany" required>
+                                    <option value="">Select Card Company</option>
+                                    <option value="Visa">Visa</option>
+                                    <option value="MasterCard">MasterCard</option>
+                                    <option value="AmericanExpress">American Express</option>
+                                  </select>
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="expiryDate">Expiry Date:</label>
+                                    <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="cvv">CVV:</label>
+                                    <input type="text" class="form-control" id="cvv" placeholder="Enter CVV" required>
+                                  </div>
+                                </div>`;
+          break;
+        case 'NetBanking':
+          paymentDetailsHtml = `<div class="form-group">
+                                  <label for="bank">Select Bank:</label>
+                                  <select class="form-control" id="bank" required>
+                                    <option value="">Select Bank</option>
+                                    <option value="HDFC">HDFC Bank</option>
+                                    <option value="ICICI">ICICI Bank</option>
+                                    <option value="SBI">State Bank of India</option>
+                                  </select>
+                                </div>`;
+          break;
+        default:
+          paymentDetailsHtml = '';
+      }
+      document.getElementById('paymentDetails').innerHTML = paymentDetailsHtml;
+    }
+
+    // Event listener for payment method selection
+    document.getElementById('paymentMethod').addEventListener('change', function() {
+      showPaymentDetails(this.value);
+    });
+
+    // Event listener for form submission
+    document.getElementById('paymentForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      // Handle form submission here
+      alert('Payment submitted!');
+      window.location.assign("1index.html");
+    });
+  </script>
+</body>
+</html>
